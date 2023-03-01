@@ -1,0 +1,12 @@
+.side-icon{
+    font-size: 60px;
+    float: right;
+    margin-top: -2.5px;    
+}
+.main{    
+    max-width: auto; 
+    transition: 1s;  
+}
+.content{
+    padding: 10px;
+}

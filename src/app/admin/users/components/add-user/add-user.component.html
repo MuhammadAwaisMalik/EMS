@@ -1,0 +1,288 @@
+<div class="nk-content">
+  <div class="container-fluid">
+    <div class="nk-content-inner">
+      <div class="nk-content-body">
+        <div class="nk-block-head nk-block-head-sm">
+          <div class="nk-block-between">
+            <div class="nk-block-head-content">
+              <h3 class="nk-block-title page-title">Add User</h3>
+            </div>
+            <!-- .nk-block-head-content -->
+          </div>
+          <!-- .nk-block-between -->
+        </div>
+        <!-- .nk-block-head -->
+        <div class="nk-block">
+          <div class="card card-bordered">
+            <div class="card-inner">
+              <form [formGroup]="addUser">
+                <div class="row gy-4">
+                  <div class="heading col-12">
+                    <h5>User Details</h5>
+                  </div>
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="first-name">Customer Name</label>
+                      <input type="text" class="form-control" id="first-name" name="customerName"
+                        [(ngModel)]="addUserHub.customerName" placeholder="First Name" required
+                        formControlName="customerName" [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !customerName.valid && customerName.touched,
+                     'is-valid': customerName.valid
+                   }" />
+                      <div class="" *ngIf="customerName.touched">
+                        <small class="form-text text-danger" *ngIf="customerName.errors?.required">Field is
+                          required</small>
+                        <small class="form-text text-danger" *ngIf="customerName.errors?.minlength">Minimum 3
+                          Letters</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="email">Email Address</label>
+                      <input type="email" class="form-control" id="email" placeholder="Email Address" name="email"
+                        [(ngModel)]="addUserHub.emailAddress" required formControlName="emailAddress" [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !emailAddress.valid && emailAddress.touched,
+                     'is-valid': emailAddress.valid
+                   }" />
+                      <div *ngIf="emailAddress.touched">
+                        <small class="form-text text-danger" *ngIf="emailAddress.errors?.required">Field is
+                          required</small>
+                        <small class="form-text text-danger" *ngIf="emailAddress.errors?.email">E-Mail Must Be @</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="cnic-number">CNIC Number</label>
+                      <input type="text" class="form-control" required id="cnic" placeholder="34101-1234567-1"
+                        name="cnic" [(ngModel)]="addUserHub.CNIC_Number" formControlName="cnic" [ngClass]="{
+                       'form-control': true,
+                       'is-invalid': !cnic.valid && cnic.touched,
+                       'is-valid': cnic.valid
+                     }" />
+                      <div *ngIf="cnic.touched">
+                        <small class="form-text text-danger" *ngIf="cnic.errors?.required">Field is required</small>
+                        <small class="form-text text-danger" *ngIf="cnic.errors?.pattern">Pattern
+                          34101-1234567-8</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="phone-no">Phone Number</label>
+                      <input type="text" class="form-control" id="phone-no" placeholder="Phone no" name="number"
+                        [(ngModel)]="addUserHub.phoneNumber" formControlName="phoneNumber" [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !phoneNumber.valid && phoneNumber.touched,
+                     'is-valid': phoneNumber.valid
+                   }" />
+                      <div *ngIf="phoneNumber.touched">
+                        <small class="form-text text-danger" *ngIf="phoneNumber.errors?.required">Field is
+                          required</small>
+                        <small class="form-text text-danger" *ngIf="phoneNumber.errors?.pattern">Pattern
+                          0300-0000000</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="venue-name">Venue Name</label>
+                      <input type="text" class="form-control" id="venue-name" placeholder="Venue Name" name="venue-name"
+                        [(ngModel)]="addUserHub.venueName" formControlName="venueName" [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !venueName.valid && venueName.touched,
+                     'is-valid': venueName.valid
+                   }" />
+                      <div *ngIf="venueName.touched">
+                        <small class="form-text text-danger" *ngIf="venueName.errors?.required">Field is
+                          required</small>
+                        <small class="form-text text-danger" *ngIf="venueName.errors?.minlength">Minimum 5
+                          Letters</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="venue-address">Venue Address</label>
+                      <input type="text" class="form-control" id="venue-address" placeholder="Venue Address"
+                        name="venue-address" [(ngModel)]="addUserHub.venueAddress" formControlName="venueAddress"
+                        [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !venueAddress.valid && venueAddress.touched,
+                     'is-valid': venueAddress.valid
+                   }" />
+                      <div *ngIf="venueAddress.touched">
+                        <small class="form-text text-danger" *ngIf="venueAddress.errors?.required">Field is
+                          required</small>
+                        <small class="form-text text-danger" *ngIf="venueAddress.errors?.minlength">Minimum 5
+                          Letters</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row gy-4" formGroupName="loginCredentials">
+                  <div class="heading col-12 pt-3">
+                    <h5>Login Credentials</h5>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="user-name">Username</label>
+                      <input type="text" class="form-control" id="user-name" placeholder="Username" name="user-name"
+                        [(ngModel)]="addUserHub.Username" formControlName="Username" [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !Username.valid && Username.touched,
+                     'is-valid': Username.valid
+                   }" />
+                      <div *ngIf="Username.touched">
+                        <small class="form-text text-danger" *ngIf="Username.errors?.required">Field is required</small>
+                        <small class="form-text text-danger" *ngIf="Username.errors?.minlength">Minimum 3
+                          Letters</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="password">Password</label>
+                      <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                      [(ngModel)]="addUserHub.Password" formControlName="Password" [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !Password.valid && Password.touched,
+                     'is-valid': Password.valid
+                   }" />
+                      <div *ngIf="Password.touched">
+                        <small class="form-text text-danger" *ngIf="Password.errors?.required">Field is required</small>
+                        <small class="form-text text-danger" *ngIf="Password.errors?.minlength">Minimum 3
+                          Letters</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="joining-date">Joining Date</label>
+                      <div class="input-group">
+                        <input class="form-control" placeholder="dd-mm-yyyy" name="dp" name="joining-date"
+                          [(ngModel)]="modelJ" ngbDatepicker #Join="ngbDatepicker" formControlName="Joining_Date"
+                          [ngClass]="{
+                         'form-control': true,
+                         'is-invalid': !Joining_Date.valid && Joining_Date.touched,
+                         'is-valid': Joining_Date.valid
+                       }" (dateSelect)="selectedDate()" />
+                        <button class="btn btn-outline-gray icon ni ni-calendar-booking " (click)="Join.toggle()"
+                          type="button"></button>
+                      </div>
+                      <div *ngIf="Joining_Date.touched">
+                        <small class="form-text text-danger" *ngIf="Joining_Date.errors?.required">Field is
+                          required</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="expiry-date">Expiry Date</label>
+                      <div class="input-group">
+                        <input class="form-control" placeholder="dd-mm-yyyy" name="dp" name="expiry-date"
+                          [(ngModel)]="modelE" ngbDatepicker #Exp="ngbDatepicker" formControlName="Expiry_Date"
+                          [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !Expiry_Date.valid && Expiry_Date.touched,
+                     'is-valid': Expiry_Date.valid
+                   }" (dateSelect)="selectedDate()" />
+                        <button class="btn btn-outline-gray icon ni ni-calendar-booking" (click)="Exp.toggle()"
+                          type="button"></button>
+                      </div>
+                      <div *ngIf="Expiry_Date.touched">
+                        <small class="form-text text-danger" *ngIf="Expiry_Date.errors?.required">Field is
+                          required</small>
+                      </div>
+                    </div>
+                  </div>
+                  <!--col-->
+                  <div class="col-md-6 col-lg-4 col-xxl-3">
+                    <div class="form-group">
+                      <label class="form-label" for="address">
+                        <span class="" [class.text-gray]="!togglerForPayment">Paid</span>
+                        <label class="switch" style="margin-left: 10px; margin-right: 10px;">
+                          <input type="checkbox" class="custom-control-input"
+                            (change)="togglerForPayment=!togglerForPayment;sendTrail();" />
+                          <span class="slider round"></span>
+                        </label>
+                        <span [class.text-gray]="togglerForPayment">Trail</span>
+                      </label>
+                      <input type="number" [(ngModel)]="addUserHub.Payment"  class="form-control" id="paid" *ngIf="togglerForPayment"
+                       placeholder="Enter Amount" formControlName="Payment" [value]="val"/>
+                      <input type="text" class="form-control" id="trail"  *ngIf="!togglerForPayment" value="Trail"
+                        disabled placeholder="Trail" value="Trail"/>
+                    </div>
+                  </div>
+                  <div class="row gy-4">
+                    <div class="col-md-3 col-sm-6">
+                      <div class="preview-block">
+                        <span class="preview-title overline-title">Bookings</span>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id="csBookings">
+                          <label class="custom-control-label" for="csBookings">Switch</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                      <div class="preview-block">
+                        <span class="preview-title overline-title">Manage Events</span>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id="csManageEvents">
+                          <label class="custom-control-label" for="csManageEvents">Switch</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                      <div class="preview-block">
+                        <span class="preview-title overline-title">Manage Services</span>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id="csManageServices">
+                          <label class="custom-control-label" for="csManageServices">Switch</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                      <div class="preview-block">
+                        <span class="preview-title overline-title">Reports</span>
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" id="csReports">
+                          <label class="custom-control-label" for="csReports">Switch</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <button (click)="creat()" type="submit" class="btn btn-primary">
+                        Add user
+                      </button>
+                      <!-- disabled="!addUser.valid" -->
+                    </div>
+                  </div>
+                  <!--col-->
+                </div>
+              </form>
+              <!--row-->
+            </div>
+            <!-- .card-inner-group -->
+          </div>
+          <!-- .card -->
+        </div>
+        <!-- .nk-block -->
+      </div>
+    </div>
+  </div>
+</div>

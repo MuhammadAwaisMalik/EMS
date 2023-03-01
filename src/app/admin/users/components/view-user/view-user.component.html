@@ -1,0 +1,433 @@
+<div class="nk-content ">
+  <div class="container-fluid">
+    <div class="nk-content-inner">
+      <div class="nk-content-body">
+        <div class="nk-block-head nk-block-head-sm">
+          <div class="nk-block-between">
+            <div class="nk-block-head-content">
+              <h3 class="nk-block-title page-title">All Users</h3>
+            </div><!-- .nk-block-head-content -->
+          </div><!-- .nk-block-between -->
+        </div><!-- .nk-block-head -->
+        <div class="card card-bordered card-preview">
+          <div class="card-inner">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+              class="datatable-init nowrap nk-tb-list nk-tb-ulist">
+              <thead>
+                <tr class="nk-tb-item nk-tb-head">
+                  <th class="nk-tb-col nk-tb-col-check">
+                    <div class="custom-control custom-control-sm custom-checkbox notext">
+                      <input type="checkbox" class="custom-control-input" id="uid" />
+                      <label class="custom-control-label" for="uid"></label>
+                    </div>
+                  </th>
+                  <th class="nk-tb-col"><span class="sub-text">Customer Name</span></th>
+                  <th class="nk-tb-col tb-col-mb">
+                    <span class="sub-text">Phone Number</span>
+                  </th>
+                  <th class="nk-tb-col tb-col-md">
+                    <span class="sub-text">CNIC</span>
+                  </th>
+                  <th class="nk-tb-col tb-col-lg">
+                    <span class="sub-text">Joining Date</span>
+                  </th>
+                  <th class="nk-tb-col tb-col-lg">
+                    <span class="sub-text">Expiry Date</span>
+                  </th>
+                  <th class="nk-tb-col tb-col-lg">
+                    <span class="sub-text">Status</span>
+                  </th>
+                  <th class="nk-tb-col nk-tb-col-tools text-end"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="nk-tb-item" *ngFor="let item of dataForTable">
+                  <td class="nk-tb-col nk-tb-col-check">
+                    <div class="custom-control custom-control-sm custom-checkbox notext">
+                      <input type="checkbox" class="custom-control-input" id="{{item.id}}" />
+                      <label class="custom-control-label" for="{{item.id}}"></label>
+                    </div>
+                  </td>
+                  <td class="nk-tb-col">
+                    <span>{{item.customerName}}</span>
+                  </td>
+                  <td class="nk-tb-col tb-col-md">
+                    <span>{{item.phoneNumber}}</span>
+                  </td>
+                  <td class="nk-tb-col tb-col-lg">
+                    <span>{{item.CNIC_Number}}</span>
+                  </td>
+                  <td class="nk-tb-col tb-col-lg">
+                    <span class="badge bg-secondary">{{item.Joining_Date}}</span>
+                  </td>
+                  <td class="nk-tb-col tb-col-md">
+                    <span class="badge bg-danger">{{item.Expiry_Date}}</span>
+                  </td>
+                  <td class="nk-tb-col tb-col-md">
+                    <span class="badge bg-success">{{item.Status}}</span>
+                  </td>
+                  <td class="nk-tb-col nk-tb-col-tools">
+                    <ul class="nk-tb-actions gx-1">
+                      <li>
+                        <div class="drodown">
+                          <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em
+                              class="icon ni ni-more-h"></em></a>
+                          <div class="dropdown-menu dropdown-menu-end">
+                            <ul class="link-list-opt no-bdr">
+                              <li>
+                                <a data-bs-toggle="modal" (click)="eachUser=item" href="#mViewDetails"><em
+                                    class="icon ni ni-eye"></em><span>View
+                                    Details</span></a>
+                              </li>
+                              <li>
+                                <a data-bs-toggle="modal" (click)="eachUser=item" href="#mEditDetails"><em
+                                    class="icon ni ni-eye"></em><span>Edit
+                                    Details</span></a>
+                              </li>
+                              <li>
+                                <a class="cursor" (click)="Toast.sendReminder()"><em
+                                    class="icon ni ni-send"></em><span>Send
+                                    Reminder</span></a>
+                              </li>
+                              <li>
+                                <a data-bs-toggle="modal" href="#mChangeStatus"><em
+                                    class="icon ni ni-exchange"></em><span>Change Status</span></a>
+                              </li>
+                              <li>
+                                <a (click)="delete(item.id)"><em class="icon ni ni-delete"></em><span>Delete
+                                    User</span></a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+                <!-- .nk-tb-item -->
+              </tbody>
+            </table>
+          </div>
+          <!-- View Details Modal -->
+          <div class="modal fade zoom" tabindex="-1" id="mViewDetails">
+            <div class="modal-dialog modal-xl" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">User Details</h5>
+                  <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                  </a>
+                </div>
+                <div class="nk-block">
+                  <div class="card card-bordered">
+                    <div class="card-inner">
+                      <div class="card text-white card-bordered bg-secondary" style="margin-bottom: 25px;">
+                        <div class="card-header">Basic Info</div>
+                      </div>
+                      <div class="row gy-4">
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Customer Name</label>
+                            <span class="form-control bg-light">{{eachUser.customerName}}</span>
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <span class="form-control bg-light">{{eachUser.emailAddress}}</span>
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">CNIC Number</label>
+                            <span class="form-control bg-light">{{eachUser.CNIC_Number}}</span>
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <span class="form-control bg-light">{{eachUser.phoneNumber}}</span>
+                          </div>
+                        </div>
+                        <!--col-->
+                      </div>
+                      <div class="card text-white card-bordered bg-secondary"
+                        style="margin-bottom: 25px; margin-top: 25px;">
+                        <div class="card-header">Venue Details</div>
+                      </div>
+                      <div class="row gy-4">
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Venue Name</label>
+                            <span class="form-control bg-light">{{eachUser.venueName}}</span>
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Venue Address</label>
+                            <span class="form-control bg-light">{{eachUser.venueAddress}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card text-white card-bordered bg-secondary"
+                        style="margin-bottom: 25px; margin-top: 25px;">
+                        <div class="card-header">Login Info</div>
+                      </div>
+                      <div class="row gy-4">
+                        <!-- col -->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Username</label>
+                            <span class="form-control bg-light">{{eachUser.Username}}</span>
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4  col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Password</label>
+                            <span class="form-control bg-light">{{eachUser.Password}}</span>
+                          </div>
+                        </div>
+                        <!-- col -->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Joining Date</label>
+                            <span class="form-control bg-light">
+                              <span class="badge bg-secondary">{{eachUser.Joining_Date}}</span>
+                            </span>
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Expiry Date</label>
+                            <span class="form-control bg-light">
+                              <span class="badge bg-danger">{{eachUser.Expiry_Date}}</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card text-white card-bordered bg-secondary"
+                        style="margin-bottom: 25px; margin-top: 25px;">
+                        <div class="card-header">Payment Info</div>
+                      </div>
+                      <!--col-->
+                      <div class="row gy-4">
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Payment</label>
+                            <span class="form-control bg-light">
+                              <span class="badge bg-primary">{{eachUser.Payment}}</span>
+                            </span>
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <span class="form-control bg-light">
+                              <span class="badge bg-success">{{eachUser.Status}}</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- .card-inner-group -->
+                  </div>
+                  <!-- .card -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Edit Details Modal Zoom -->
+          <div class="modal fade zoom" tabindex="-1" id="mEditDetails">
+            <div class="modal-dialog modal-xl" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Edit User Details</h5>
+                  <a class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                  </a>
+                </div>
+                <div class="nk-block">
+                  <div class="card card-bordered">
+                    <div class="card-inner">
+                      <div class="card text-white card-bordered bg-secondary" style="margin-bottom: 25px;">
+                        <div class="card-header">Basic Info</div>
+                      </div>
+                      <div class="row gy-4">
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Customer Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="eachUser.customerName" id="first-name"
+                              placeholder="First Name" required />
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" [(ngModel)]="eachUser.emailAddress" id="email"
+                              placeholder="Email Address" />
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">CNIC Number</label>
+                            <input type="text"  class="form-control"
+                              [(ngModel)]="eachUser.CNIC_Number" id="last-name" placeholder="34101-XXXXXXXX-X" />
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Phone Number</label>
+                            <input class="form-control" [(ngModel)]="eachUser.phoneNumber" id="phone-no"
+                              placeholder="Phone no" />
+                          </div>
+                        </div>
+                        <!--col-->
+                      </div>
+                      <div class="card text-white card-bordered bg-secondary"
+                        style="margin-bottom: 25px; margin-top: 25px;">
+                        <div class="card-header">Venue Details</div>
+                      </div>
+                      <div class="row gy-4">
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Venue Name</label>
+                            <div class="form-control-wrap">
+                              <input class="form-control" [(ngModel)]="eachUser.venueName" id="venueName"
+                              placeholder="Venue Name" />
+                            </div>
+                          </div>
+                        </div>
+                        <!--col-->
+                        <div class="col-md-6 col-lg-4 col-xxl-3">
+                          <div class="form-group">
+                            <label class="form-label">Venue Address</label>
+                            <div class="form-control-wrap">
+                              <input class="form-control" [(ngModel)]="eachUser.venueAddress" id="venueAddress"
+                              placeholder="Venue Address" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card text-white card-bordered bg-secondary"
+                      style="margin-bottom: 25px; margin-top: 25px;">
+                      <div class="card-header">Login Info</div>
+                    </div>
+                    <div class="row gy-4">
+                      <!-- col -->
+                      <div class="col-md-6 col-lg-4 col-xxl-3">
+                        <div class="form-group">
+                          <label class="form-label">Username</label>
+                          <input class="form-control" [(ngModel)]="eachUser.Username" id="username"
+                          placeholder="Username" />
+                        </div>
+                      </div>
+                      <!--col-->
+                      <div class="col-md-6 col-lg-4  col-xxl-3">
+                        <div class="form-group">
+                          <label class="form-label">Password</label>
+                          <input class="form-control" [(ngModel)]="eachUser.Password" id="password"
+                           placeholder="Password" />
+                        </div>
+                      </div>
+                      <!-- col -->
+                      <div class="col-md-6 col-lg-4 col-xxl-3">
+                        <div class="form-group">
+                          <label class="form-label">Joining Date</label>
+                          <input class="form-control" [(ngModel)]="eachUser.Joining_Date" id="Joining_Date"
+                          placeholder="Joining_Date" />
+                        </div>
+                      </div>
+                      <!--col-->
+                      <div class="col-md-6 col-lg-4 col-xxl-3">
+                        <div class="form-group">
+                          <label class="form-label">Expiry Date</label>
+                          <input class="form-control" [(ngModel)]="eachUser.Expiry_Date" id="Expiry_Date"
+                              placeholder="Expiry Date" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card text-white card-bordered bg-secondary"
+                      style="margin-bottom: 25px; margin-top: 25px;">
+                      <div class="card-header">Payment Info</div>
+                    </div>
+                    <!--col-->
+                    <div class="row gy-4">
+                      <div class="col-md-6 col-lg-4 col-xxl-3">
+                        <div class="form-group">
+                          <label class="form-label">Payment</label>
+                          <input class="form-control" [(ngModel)]="eachUser.Payment" id="Payment"
+                          placeholder="Payment" />
+                        </div>
+                      </div>
+                      <!--col-->
+                      <div class="col-md-6 col-lg-4 col-xxl-3">
+                        <div class="form-group">
+                          <label class="form-label">Status</label>
+                            <input class="form-control" [(ngModel)]="eachUser.Status" id="status"
+                              placeholder="Status"/>                          
+                        </div>
+                      </div>
+                    </div>
+                      <div class="row gy-4" style="margin-bottom: 25px; margin-top: 25px;">
+                        <div class="nk-block-lg">
+                          <div class="form-group">
+                            <button (click)="Toast.updateSuccessfully()" data-bs-dismiss="modal" aria-label="Close" (click)="update(eachUser)" type="submit" class="btn btn-primary">
+                              Update
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- .card-inner-group -->
+                  </div>
+                  <!-- .card -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Change Status -->
+          <div class="modal fade zoom" tabindex="-1" id="mChangeStatus">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Change Booking Status</h5>
+                  <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                  </a>
+                </div>
+                <div class="modal-body">
+                  <div class="form-control-wrap">
+                    <select class="form-select js-select2" data-placeholder="Change Status">
+                      <option value="option_select_room_type">Pending</option>
+                      <option value="option_select_room_type" selected>Approved</option>
+                      <option value="option_select_room_type">Canceled</option>
+                    </select>
+                    <div class="row gy-4" style="margin-bottom: 20px; margin-top: 20px;">
+                      <div class="nk-block-lg">
+                        <div class="form-group">
+                          <button (click)="Toast.statusChanged()" type="submit" class="btn btn-primary">
+                            Update
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

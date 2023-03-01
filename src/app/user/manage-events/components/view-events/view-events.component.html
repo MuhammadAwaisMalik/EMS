@@ -1,0 +1,195 @@
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">All Events</h3>
+                            <div class="nk-block-des text-soft">
+                                <p>You have total 5 events.</p>
+                            </div>
+                        </div><!-- .nk-block-head-content -->
+                        <div class="nk-block-head-content">
+                            <div class="toggle-wrap nk-block-tools-toggle">
+                                <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                    data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
+                                <div class="toggle-expand-content" data-content="pageMenu">
+                                    <ul class="nk-block-tools g-1">
+                                        <li class="nk-block-tools-opt">
+                                            <a href="#" class="btn btn-success">PDF</a>
+                                        </li>
+                                        <li class="nk-block-tools-opt">
+                                            <a href="#" class="btn btn-secondary">CSV</a>
+                                        </li>
+                                        <li class="nk-block-tools-opt">
+                                            <a href="#" class="btn btn-info">Print</a>
+                                        </li>
+                                        <li class="nk-block-tools-opt">
+                                            <a href="#" class="btn btn-danger">Delete</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div><!-- .toggle-wrap -->
+                        </div><!-- .nk-block-head-content -->
+                    </div><!-- .nk-block-between -->
+                </div><!-- .nk-block-head -->
+                <div class="card card-bordered card-preview">
+                    <div class="card-inner">
+                        <table datatable [dtOptions]="dtOptions" class="datatable-init nowrap nk-tb-list nk-tb-ulist">
+                            <thead>
+                                <tr class="nk-tb-item nk-tb-head">
+                                    <th class="nk-tb-col nk-tb-col-check">
+                                        <div class="custom-control custom-control-sm custom-checkbox notext">
+                                            <input type="checkbox" class="custom-control-input" id="uid" />
+                                            <label class="custom-control-label" for="uid"></label>
+                                        </div>
+                                    </th>
+                                    <th class="nk-tb-col"><span class="sub-text">Event Name</span></th>
+                                    <th class="nk-tb-col tb-col-md">
+                                        <span class="sub-text">Event Des</span>
+                                    </th>
+                                    <th class="nk-tb-col tb-col-mb">
+                                        <span class="sub-text">Creation Date</span>
+                                    </th>
+                                    <th class="nk-tb-col tb-col-mb">
+                                        <span class="sub-text">Cost Price</span>
+                                    </th>
+                                    <th class="nk-tb-col tb-col-mb">
+                                        <span class="sub-text">Gross Price</span>
+                                    </th>
+                                    <th class="nk-tb-col nk-tb-col-tools text-end"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="nk-tb-item">
+                                    <td class="nk-tb-col nk-tb-col-check">
+                                        <div class="custom-control custom-control-sm custom-checkbox notext">
+                                            <input type="checkbox" class="custom-control-input" id="uid1" />
+                                            <label class="custom-control-label" for="uid1"></label>
+                                        </div>
+                                    </td>
+                                    <td class="nk-tb-col">
+                                        <span>Anniversary</span>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-md">
+                                        <span>Some Description...</span>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-lg">
+                                        <span class="badge bg-secondary">10 Dec 2022</span>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-lg">
+                                        <span class="badge bg-primary">100000PKR</span>
+                                    </td>
+                                    <td class="nk-tb-col tb-col-lg">
+                                        <span class="badge bg-primary">350000PKR</span>
+                                    </td>
+                                    <td class="nk-tb-col nk-tb-col-tools">
+                                        <a data-bs-toggle="modal" href="#mEditDetails"
+                                            class="btn btn-round btn-icon btn-primary" style="margin-right: 10px;"><em
+                                                class="icon ni ni-edit"></em></a>
+                                        <a data-bs-toggle="modal" href="#mDeleteEvent"
+                                            class="btn btn-round btn-icon btn-danger"><em
+                                                class="icon ni ni-trash"></em></a>
+                                    </td>
+                                </tr>
+                                <!-- .nk-tb-item  -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Edit Modal -->
+                    <div class="modal fade zoom" tabindex="-1" id="mEditDetails">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Edit Event Details</h5>
+                                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <em class="icon ni ni-cross"></em>
+                                    </a>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-control-wrap">
+                                        <div class="col-12" style="margin-bottom: 15px;">
+                                            <div class="form-group">
+                                                <label class="form-label" for="event-name">Event Name</label>
+                                                <input type="text" class="form-control" id="event-name"
+                                                    placeholder="Event Name" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-12" style="margin-bottom: 15px;">
+                                            <div class="form-group">
+                                                <label class="form-label" for="event-cost-price">Event Cost
+                                                    Price</label>
+                                                <input type="number" class="form-control" id="event-cost-price"
+                                                    placeholder="Event Cost Price" />
+                                            </div>
+                                        </div>
+                                        <!--col-->
+                                        <div class="col-12" style="margin-bottom: 15px;">
+                                            <div class="form-group">
+                                                <label class="form-label" for="event-gross-price">Event Gross
+                                                    Price</label>
+                                                <input type="number" class="form-control" id="event-gross-price"
+                                                    placeholder="Event Gross Price" />
+                                            </div>
+                                        </div>
+                                        <!--col-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label" for="default-textarea">Event
+                                                    Description</label>
+                                                <div class="form-control-wrap">
+                                                    <textarea class="form-control no-resize" id="default-textarea"
+                                                        placeholder="Add Description"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row gy-4" style="margin-bottom: 20px; margin-top: 20px;">
+                                            <div class="nk-block-lg">
+                                                <div class="form-group">
+                                                    <button (click)="updateSuccessfully()" type="submit"
+                                                        class="btn btn-primary">
+                                                        Update
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Delete Modal  -->
+                    <div class="modal fade" tabindex="-1" id="mDeleteEvent">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross"></em></a>
+                                <div class="modal-body modal-body-sm text-center">
+                                    <div class="nk-modal py-4">
+                                        <em
+                                            class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-cross bg-danger"></em>
+                                        <h4 class="nk-modal-title">Are You Sure ?</h4>
+                                        <div class="nk-modal-text mt-n2">
+                                            <p class="text-soft">This data will be removed permanently.</p>
+                                        </div>
+                                        <ul class="d-flex justify-content-center gx-4 mt-4">
+                                            <li>
+                                                <button data-bs-dismiss="modal" id="deleteWH"
+                                                    class="btn btn-success">Yes, Delete it</button>
+                                            </li>
+                                            <li>
+                                                <button data-bs-dismiss="modal" data-toggle="modal"
+                                                    data-target="#editEventPopup"
+                                                    class="btn btn-danger btn-dim">Cancel</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

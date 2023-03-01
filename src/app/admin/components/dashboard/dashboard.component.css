@@ -1,0 +1,7 @@
+.sub-menu{
+    margin-left: 30px;
+    transition: 0.25s ease-in-out ;
+}
+.nav-link{
+    cursor: pointer;
+}

@@ -1,0 +1,323 @@
+<div class="nk-main">
+  <!-- sidebar @s -->
+  <div class="nk-sidebar nk-sidebar-fixed is-dark" [class.has-hover]="hashover"
+    [class.nk-sidebar-active]="sidebaronMobile" [class.is-compact]="iscompact" (mouseenter)="hashover = true"
+    (mouseleave)="hashover = false" data-content="sidebarMenu">
+    <div class="nk-sidebar-element nk-sidebar-head">
+      <div class="nk-menu-trigger cursor" (click)="MainToggler()" (click)="iscompact = !iscompact"
+        (click)="sidebaronMobile=!sidebaronMobile" (click)="hashover = false">
+        <a class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
+            class="icon ni ni-arrow-left"></em></a>
+        <a class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em
+            class="icon ni ni-menu"></em></a>
+      </div>
+      <div class="nk-sidebar-brand">
+        <a class="logo-link nk-sidebar-logo">
+          <img class="logo-light logo-img" src="assets/logo.png" alt="logo" />
+          <img class="logo-dark logo-img" src="assets/logo-dark.png" srcset="./images/logo-dark2x.png 2x"
+            alt="logo-dark" />
+        </a>
+      </div>
+    </div>
+    <!-- .nk-sidebar-element -->
+    <div class="nk-sidebar-element nk-sidebar-body" (mouseleave)="MainTogglerTwo()">
+      <div class="nk-sidebar-content">
+        <div class="nk-sidebar-menu" data-simplebar>
+          <ul class="nk-menu">
+            <li class="nk-menu-item cursor" routerLinkActive="active" (click)="dashboard()"
+              [attr.aria-expanded]="!isCDashboard">
+              <a routerLink="user/dashboard" class="nk-menu-link">
+                <span class="nk-menu-icon"><em class="icon ni ni-dashboard-fill"></em></span>
+                <span class="nk-menu-text">Dashboard</span>
+              </a>
+            </li>
+            <!-- .nk-menu-item -->
+            <li class="nk-menu-item has-sub cursor">
+              <a (click)="Bookings.toggle()" (click)="booking()" [attr.aria-expanded]="!isCBookings"
+                class="nav-link nk-menu-link nk-menu-toggle">
+                <span class="nk-menu-icon"><em class="icon ni ni-calendar-booking-fill"></em></span>
+                <span class="nk-menu-text">Bookings</span>
+              </a>
+              <ul class="sub-menu" #Bookings="ngbCollapse" [(ngbCollapse)]="isCBookings">
+                <li class="nav-item">
+                  <a class="nk-menu-link nav-link" routerLink="user/bookings/addbooking" routerLinkActive="active"><span
+                      class="nk-menu-text">Add
+                      Booking</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nk-menu-link nav-link" routerLink="user/bookings/aprovedbookings"
+                    routerLinkActive="active"><span class="nk-menu-text">Approved Bookings</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nk-menu-link nav-link" routerLink="user/bookings/pendingbookings"
+                    routerLinkActive="active"><span class="nk-menu-text">Pending Bookings</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nk-menu-link nav-link" routerLink="user/bookings/canceledbookings"
+                    routerLinkActive="active"><span class="nk-menu-text">Canceled Bookings</span></a>
+                </li>
+              </ul>
+            </li>
+            <!-- .nk-menu-item -->
+            <li class="nk-menu-item has-sub cursor">
+              <a class="nk-menu-link nk-menu-toggle" (click)="ManageEvents.toggle()" (click)="manageEvent()"
+                [attr.aria-expanded]="!isCManageEvents">
+                <span class="nk-menu-icon"><em class="icon ni ni-property-alt"></em></span>
+                <span class="nk-menu-text">Manage Events</span>
+              </a>
+              <ul class="sub-menu" #ManageEvents="ngbCollapse" [(ngbCollapse)]="isCManageEvents">
+                <li class="nk-menu-item">
+                  <a class="nk-menu-link" routerLink="user/manage-events/add-event" routerLinkActive="active"><span
+                      class="nk-menu-text">Add
+                      Event</span></a>
+                </li>
+                <li class="nk-menu-item">
+                  <a class="nk-menu-link" routerLink="user/manage-events/view-events" routerLinkActive="active"><span
+                      class="nk-menu-text">View
+                      Events</span></a>
+                </li>
+              </ul>
+            </li>
+            <!-- .nk-menu-item -->
+            <li class="nk-menu-item has-sub cursor">
+              <a class="nk-menu-link nk-menu-toggle" (click)="ManageServices.toggle()" (click)="manageServices()"
+                [attr.aria-expanded]="!isCManageServices">
+                <span class="nk-menu-icon"><em class="icon ni ni-list-index-fill"></em></span>
+                <span class="nk-menu-text">Manage Services</span>
+              </a>
+              <ul class="sub-menu" #ManageServices="ngbCollapse" [(ngbCollapse)]="isCManageServices">
+                <li class="nk-menu-item">
+                  <a class="nk-menu-link" routerLink="user/manage-services/add-service" routerLinkActive="active"><span
+                      class="nk-menu-text">Add
+                      Service</span></a>
+                </li>
+                <li class="nk-menu-item">
+                  <a class="nk-menu-link" routerLink="user/manage-services/view-services"
+                    routerLinkActive="active"><span class="nk-menu-text">View
+                      Services</span></a>
+                </li>
+              </ul>
+            </li>
+            <!-- .nk-menu-item -->
+            <li class="nk-menu-item has-sub cursor">
+              <a class="nk-menu-link nk-menu-toggle" (click)="Reports.toggle()" (click)="reports()"
+                [attr.aria-expanded]="!isCReports">
+                <span class="nk-menu-icon"><em class="icon ni ni-report-profit"></em></span>
+                <span class="nk-menu-text">Reports</span>
+              </a>
+              <ul class="sub-menu" #Reports="ngbCollapse" [(ngbCollapse)]="isCReports">
+                <li class="nk-menu-item">
+                  <a class="nk-menu-link" routerLink="user/reports/weekly-bookings" routerLinkActive="active"><span
+                      class="nk-menu-text">Weekly Bookings</span></a>
+                </li>
+                <li class="nk-menu-item">
+                  <a class="nk-menu-link" routerLink="user/reports/monthly-bookings" routerLinkActive="active"><span
+                      class="nk-menu-text">Monthly Bookings</span></a>
+                </li>
+                <li class="nk-menu-item">
+                  <a class="nk-menu-link" routerLink="user/reports/between-dates-bookings"
+                    routerLinkActive="active"><span class="nk-menu-text">Between Dates Bookings</span></a>
+                </li>
+                <li class="nk-menu-item">
+                  <a class="nk-menu-link" routerLink="user/reports/top-services" routerLinkActive="active"><span
+                      class="nk-menu-text">Top Services</span></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <!-- .nk-menu -->
+        </div>
+        <!-- .nk-sidebar-menu -->
+      </div>
+      <!-- .nk-sidebar-content -->
+    </div>
+    <!-- .nk-sidebar-element -->
+  </div>
+  <!-- sidebar @e -->
+  <!-- wrap @s -->
+  <div class="nk-wrap">
+    <!-- main header @s -->
+    <div class="nk-header nk-header-fixed is-light">
+      <div class="container-fluid">
+        <div class="nk-header-wrap">
+          <div class="nk-menu-trigger d-xl-none ms-n1">
+            <a (click)="sidebaronMobile=!sidebaronMobile" class="nk-nav-toggle nk-quick-nav-icon"
+              data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+          </div>
+          <div class="nk-header-brand d-xl-none">
+            <a class="logo-link">
+              <img class="logo-light logo-img" src="assets/logo.png" alt="logo" />
+              <img class="logo-dark logo-img" src="assets/logo-dark.png" alt="logo-dark" />
+            </a>
+          </div>
+          <!-- .nk-header-brand -->
+          <div class="nk-header-tools">
+            <ul class="nk-quick-nav">
+              <li class="dropdown notification-dropdown me-n1">
+                <a class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                  <div class="icon-status icon-status-info">
+                    <em class="icon ni ni-bell"></em>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-xl dropdown-menu-end dropdown-menu-s1">
+                  <div class="dropdown-head">
+                    <span class="sub-title nk-dropdown-title">Notifications</span>
+                    <a>Mark All as Read</a>
+                  </div>
+                  <div class="dropdown-body">
+                    <div class="nk-notification">
+                      <div class="nk-notification-item dropdown-inner">
+                        <div class="nk-notification-icon">
+                          <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                        </div>
+                        <div class="nk-notification-content">
+                          <div class="nk-notification-text">
+                            You have requested to
+                            <span>Widthdrawl</span>
+                          </div>
+                          <div class="nk-notification-time">2 hrs ago</div>
+                        </div>
+                      </div>
+                      <div class="nk-notification-item dropdown-inner">
+                        <div class="nk-notification-icon">
+                          <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                        </div>
+                        <div class="nk-notification-content">
+                          <div class="nk-notification-text">
+                            Your <span>Deposit Order</span> is placed
+                          </div>
+                          <div class="nk-notification-time">2 hrs ago</div>
+                        </div>
+                      </div>
+                      <div class="nk-notification-item dropdown-inner">
+                        <div class="nk-notification-icon">
+                          <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                        </div>
+                        <div class="nk-notification-content">
+                          <div class="nk-notification-text">
+                            You have requested to
+                            <span>Widthdrawl</span>
+                          </div>
+                          <div class="nk-notification-time">2 hrs ago</div>
+                        </div>
+                      </div>
+                      <div class="nk-notification-item dropdown-inner">
+                        <div class="nk-notification-icon">
+                          <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                        </div>
+                        <div class="nk-notification-content">
+                          <div class="nk-notification-text">
+                            Your <span>Deposit Order</span> is placed
+                          </div>
+                          <div class="nk-notification-time">2 hrs ago</div>
+                        </div>
+                      </div>
+                      <div class="nk-notification-item dropdown-inner">
+                        <div class="nk-notification-icon">
+                          <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                        </div>
+                        <div class="nk-notification-content">
+                          <div class="nk-notification-text">
+                            You have requested to
+                            <span>Widthdrawl</span>
+                          </div>
+                          <div class="nk-notification-time">2 hrs ago</div>
+                        </div>
+                      </div>
+                      <div class="nk-notification-item dropdown-inner">
+                        <div class="nk-notification-icon">
+                          <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
+                        </div>
+                        <div class="nk-notification-content">
+                          <div class="nk-notification-text">
+                            Your <span>Deposit Order</span> is placed
+                          </div>
+                          <div class="nk-notification-time">2 hrs ago</div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- .nk-notification -->
+                  </div>
+                  <!-- .nk-dropdown-body -->
+                  <div class="dropdown-foot center">
+                    <a>View All</a>
+                  </div>
+                </div>
+              </li>
+              <!-- .dropdown -->
+              <li class="dropdown user-dropdown">
+                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                  <div class="user-toggle">
+                    <div class="user-avatar sm">
+                      <em class="icon ni ni-user-alt"></em>
+                    </div>
+                    <div class="user-info d-none d-md-block">
+                      <div class="user-status">Venue Owner</div>
+                      <div class="user-name dropdown-indicator">Muhammad Awais</div>
+                    </div>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
+                  <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                    <div class="user-card">
+                      <div class="user-avatar">
+                        <span>MA</span>
+                      </div>
+                      <div class="user-info">
+                        <span class="lead-text">Muhammad Awais</span>
+                        <span class="sub-text">ma@iac.Studios</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-inner">
+                    <ul class="link-list">
+                      <li>
+                        <a><em class="icon ni ni-user-alt"></em><span>View Profile</span></a>
+                      </li>
+                      <li>
+                        <a class="dark-switch"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="dropdown-inner">
+                    <ul class="link-list">
+                      <li>
+                        <a><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+              <!-- .dropdown -->
+            </ul>
+            <!-- .nk-quick-nav -->
+          </div>
+          <!-- .nk-header-tools -->
+        </div>
+        <!-- .nk-header-wrap -->
+      </div>
+      <!-- .container-fliud -->
+    </div>
+    <!-- main header @e -->
+    <!-- content @s -->
+    <div class="nk-content">
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- content @e -->
+    <!-- footer @s -->
+    <div class="nk-footer">
+      <div class="container-fluid">
+        <div class="nk-footer-wrap">
+          <div class="nk-footer-copyright">
+            &copy; 2023 iAC EMS - Powered by
+            <a href="https://iac-studio.com" target="_blank">iAC Studio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer @e -->
+  </div>
+  <!-- wrap @e -->
+</div>

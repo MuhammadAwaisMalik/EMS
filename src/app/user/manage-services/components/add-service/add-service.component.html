@@ -1,0 +1,116 @@
+<div class="nk-content">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Add Service</h3>
+                        </div>
+                        <!-- .nk-block-head-content -->
+                    </div>
+                    <!-- .nk-block-between -->
+                </div>
+                <!-- .nk-block-head -->
+                <div class="nk-block">
+                    <div class="card card-bordered">
+                        <div class="card-inner">
+                            <form [formGroup] ="service">
+                            <div class="row gy-4">
+                                <div class="col-md-6 col-lg-4 col-xxl-3">
+                                    <div class="form-group">
+                                        <label class="form-label" for="first-name">Service Name</label>
+                                        <input type="text" class="form-control" id="first-name"
+                                            placeholder="Service Name"
+                                            formControlName ="servicename"
+                      [ngClass]="{
+                        'form-control': true,
+                        'is-invalid': !servicename.valid && servicename.touched,
+                        'is-valid': servicename.valid
+                      }"/>
+                      <div *ngIf="servicename.touched">
+                       <small class="form-text text-danger"  *ngIf ="servicename.errors?.required">Field is required</small>
+                       <small class="form-text text-danger"  *ngIf ="servicename.errors?.minlength">Price</small>
+                      </div>
+                                    </div>
+                                </div>
+                                <!--col-->
+                                <div class="col-md-6 col-lg-4 col-xxl-3">
+                                    <div class="form-group">
+                                        <label class="form-label" for="first-name">Service Cost Price</label>
+                                        <input type="number" class="form-control" id="first-name"
+                                            placeholder="Service Price"
+                                            formControlName ="costprice"
+                                            [ngClass]="{
+                                              'form-control': true,
+                                              'is-invalid': !costprice.valid && costprice.touched,
+                                              'is-valid': costprice.valid
+                                            }"/>
+                                            <div *ngIf="costprice.touched">
+                                             <small class="form-text text-danger"  *ngIf ="costprice.errors?.required">Field is required</small>
+                                             <small class="form-text text-danger"  *ngIf ="costprice.errors?.minlength">Price</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                 <!--col-->
+                                 <!-- toggler to Check weather the service is for single person(naan shami) or Total (like DJ service) -->
+                                 <div class="col-md-6 col-lg-4 col-xxl-3">
+                                    <div class="form-group">
+                                        <div class="form-label">
+                                            <span class="" [class.text-gray]="!togglerForService">Per-Head Price</span>
+                                            <label class="switch" style="margin-left: 10px; margin-right: 10px;">
+                                              <input type="checkbox" class="custom-control-input" (change)="togglerForService=!togglerForService">
+                                              <span class="slider round"></span>
+                                            </label>
+                                            <span [class.text-gray]="togglerForService">Total Price</span>
+                                          </div>
+                                          <input type="number" *ngIf="togglerForService" class="form-control" id="per-head-price"
+                                          placeholder="Per-Head Price" 
+                                        />
+                                         <input type="number" *ngIf="!togglerForService" class="form-control" id="total-price" value="total-price"
+                                          placeholder="Total Price"/> 
+                                    </div>
+                                </div>
+                                <!--col-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="default-textarea">Service Description</label>
+                                        <div class="form-control-wrap">
+                                            <textarea class="form-control no-resize" id="default-textarea"
+                                                placeholder="Add Description"
+                                                formControlName ="servicedescription"
+                                                     [ngClass]="{
+                                                     'form-control': true,
+                                                   'is-invalid': !servicedescription.valid && servicedescription.touched,
+                                                   'is-valid': servicedescription.valid
+                                                  }"
+                                                ></textarea>
+                                                <div *ngIf="servicedescription.touched">
+                                                    <small class="form-text text-danger"  *ngIf ="servicedescription.errors?.required">Field is required</small>
+                                                    <small class="form-text text-danger"  *ngIf ="servicedescription.errors?.minlength">Description</small>
+                                                 
+                                                   </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">
+                                            Add Service
+                                        </button>
+                                    </div>
+                                </div>
+                                <!--col-->
+                            </div>
+                            <!--row-->
+                        </form>
+                        </div>
+                        <!-- .card-inner-group -->
+                    </div>
+                    <!-- .card -->
+                </div>
+                <!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>

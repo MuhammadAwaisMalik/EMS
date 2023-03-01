@@ -1,0 +1,116 @@
+<div class="nk-content">
+  <div class="container-fluid">
+    <div class="nk-content-inner">
+      <div class="nk-content-body">
+        <div class="nk-block-head nk-block-head-sm">
+          <div class="nk-block-between">
+            <div class="nk-block-head-content">
+              <h3 class="nk-block-title page-title">Add Event</h3>
+            </div>
+            <!-- .nk-block-head-content -->
+          </div>
+          <!-- .nk-block-between -->
+        </div>
+        <!-- .nk-block-head -->
+        <div class="nk-block">
+          <div class="card card-bordered">
+            <div class="card-inner">
+              <form [formGroup] ="addevent">
+              <div class="row gy-4">
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label" for="edit-event-name">Event Name</label>
+                    <input type="text" class="form-control" id="edit-event-name" placeholder="Event Name" required 
+                    formControlName ="eventName"
+                    [ngClass]="{
+                      'form-control': true,
+                      'is-invalid': !eventName.valid && eventName.touched,
+                      'is-valid': eventName.valid
+                    }"/>
+                    <div class="" *ngIf="eventName.touched">
+                     <small  class="form-text text-danger"  *ngIf ="eventName.errors?.required">Field is required</small>
+                     <small  class="form-text text-danger"  *ngIf ="eventName.errors?.minlength">Minimum 3 Letters</small>
+                 
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label" for="edit-event-cost-price">Event Cost Price</label>
+                    <input type="number" class="form-control" id="edit-event-cost-price"
+                      placeholder="Event Cost Price"
+                      formControlName ="costprice"
+                      [ngClass]="{
+                        'form-control': true,
+                        'is-invalid': !costprice.valid && costprice.touched,
+                        'is-valid': costprice.valid
+                      }"/>
+                      <div *ngIf="costprice.touched">
+                       <small class="form-text text-danger"  *ngIf ="costprice.errors?.required">Field is required</small>
+                       <small class="form-text text-danger"  *ngIf ="costprice.errors?.minlength">Price</small>
+                      </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label" for="edit-event-gross-price">Event Gross Price</label>
+                    <input type="number" class="form-control" id="edit-event-gross-price"
+                      placeholder="Event Gross Price"
+                      formControlName ="grossprice"
+                      [ngClass]="{
+                        'form-control': true,
+                        'is-invalid': !grossprice.valid && grossprice.touched,
+                        'is-valid': grossprice.valid
+                      }"/>
+                      <div *ngIf="grossprice.touched">
+                       <small class="form-text text-danger"  *ngIf ="grossprice.errors?.required">Field is required</small>
+                       <small class="form-text text-danger"  *ngIf ="grossprice.errors?.minlength">grossprice</small>
+                    
+                      </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-label" for="default-textarea">Event Description</label>
+                    <div class="form-control-wrap">
+                      <textarea class="form-control no-resize" id="default-textarea"
+                        placeholder="Add Description"
+                        formControlName ="eventdescription"
+                        [ngClass]="{
+                          'form-control': true,
+                          'is-invalid': !eventdescription.valid && eventdescription.touched,
+                          'is-valid': eventdescription.valid
+                        }"
+                        
+                        ></textarea>
+                        <div *ngIf="eventdescription.touched">
+                          <small class="form-text text-danger"  *ngIf ="eventdescription.errors?.required">Field is required</small>
+                          <small class="form-text text-danger"  *ngIf ="eventdescription.errors?.minlength">Description</small>
+                       
+                         </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <button (click)="addSuccessfully()" type="submit" class="btn btn-primary">
+                      Add Event
+                    </button>
+                  </div>
+                </div>
+                <!--col-->
+              </div>
+              <!--row-->
+            </form>
+            </div>
+            <!-- .card-inner-group -->
+          </div>
+          <!-- .card -->
+        </div>
+        <!-- .nk-block -->
+      </div>
+    </div>
+  </div>
+</div>

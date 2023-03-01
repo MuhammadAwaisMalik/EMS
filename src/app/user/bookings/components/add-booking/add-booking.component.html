@@ -1,0 +1,302 @@
+<div class="nk-content">
+  <div class="container-fluid">
+    <div class="nk-content-inner">
+      <div class="nk-content-body">
+        <div class="nk-block-head nk-block-head-sm">
+          <div class="nk-block-between">
+            <div class="nk-block-head-content">
+              <h3 class="nk-block-title page-title">Add Booking</h3>
+            </div>
+            <!-- .nk-block-head-content -->
+          </div>
+          <!-- .nk-block-between -->
+        </div>
+        <!-- .nk-block-head -->
+        <div class="nk-block">
+          <div class="card card-bordered">
+            <div class="card-inner">
+            <form [formGroup]="addBookings">
+              <div class="row gy-4">
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label" for="first-name">Customer Name</label>
+                    <input type="text"  id="first-name" placeholder="First Name" required 
+                    formControlName="customerName"
+                    [ngClass]="{
+                    'form-control':true,
+                    'is-invalid': !customerName.valid && customerName.touched,
+                    'is-valid': customerName.valid                      
+                    }"/>
+                    <div *ngIf="customerName.touched">
+                      <small class="form-text text-danger" *ngIf="customerName.errors?.required">Feild is Required</small>
+                      <small class="form-text text-danger" *ngIf="customerName.errors?.minlength">Minimum 3 letters</small>
+                    </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email Address"  formControlName="email"
+                    [ngClass]="{
+                    'form-control':true,
+                    'is-invalid': !email.valid && email.touched,
+                    'is-valid': email.valid                      
+                    }"/>
+                    <div *ngIf="email.touched">
+                      <small class="form-text text-danger" *ngIf="email.errors?.required">Feild is Required</small>
+                      <small class="form-text text-danger" *ngIf="email.errors?.email">Email must be required @</small>
+                    </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label" for="cnic-number">CNIC Number</label>
+                    <input type="text"  id="cnic-number"
+                      placeholder="34101-XXXXXXXX-X" 
+                      formControlName ="cnic" 
+                      [ngClass]="{
+                       'form-control': true,
+                       'is-invalid': !cnic.valid && cnic.touched,
+                       'is-valid': cnic.valid
+                     }"/>
+                     <div *ngIf="cnic.touched">
+                      <small class="form-text text-danger"  *ngIf ="cnic.errors?.required">Field is required</small>
+                      <small class="form-text text-danger"  *ngIf ="cnic.errors?.pattern">Pattern 34101-1234567-1</small>
+                   
+                     </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label" for="phone-no">Phone Number</label>
+                    <input type="text"  id="phone-no" placeholder="Phone no" formControlName ="phoneNumber" 
+                    [ngClass]="{
+                     'form-control': true,
+                     'is-invalid': !phoneNumber.valid && phoneNumber.touched,
+                     'is-valid': phoneNumber.valid
+                   }"/>
+                   <div *ngIf="phoneNumber.touched">
+                    <small class="form-text text-danger"  *ngIf ="phoneNumber.errors?.required">Field is required</small>
+                    <small class="form-text text-danger"  *ngIf ="phoneNumber.errors?.pattern">Pattern 0300-0000000</small>
+                   </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label">Select Event</label>
+                    
+                      <select class="form-select js-select2"  formControlName="eventType"
+                      placeholder="choose..."
+                      [ngClass]="{'form-control': true,
+                  'is-invalid': !eventType.valid && eventType.touched,
+                  'is-valid': eventType.valid}">
+                        <option selected [ngValue]="null">jh</option>
+                        <option  *ngFor="let item of event" [value]="item">
+                         {{item}}
+                        </option>
+                      </select>
+                        <small *ngIf="eventType.errors?.required && eventType.touched" class="form-text text-danger">Field is required</small>
+                    </div>
+                  </div>
+                <!--col-->
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label">Select Service</label>
+                    <div class="form-control-wrap">
+                      <ng-multiselect-dropdown class="form-select js-select2" style="padding: 0px; height: 36px;"
+                        [placeholder]="'Select Services'" [settings]="dropdownSettings" [data]="dropdownList"
+                        [(ngModel)]="selectedItems"
+                        formControlName="state"
+                        [ngClass]="{
+                          'form-control': true,
+                          'is-invalid': !state.valid && state.touched,
+                          'is-valid': state.valid
+                        }"
+                        ></ng-multiselect-dropdown>
+                        <small class="form-text text-danger"  *ngIf ="state.errors?.required && state.touched">Field is required</small>
+                        
+                    </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <div class="form-label">
+                      <span class="" [class.text-gray]="!togglerForEvent">Single Day Event</span>
+                      <label class="switch" style="margin-left: 10px; margin-right: 10px;">
+                        <input type="checkbox" class="custom-control-input" (change)="togglerForEvent=!togglerForEvent"
+                        >
+                      
+                            <!-- <div *ngIf="Joining_Date.touched">
+                            <small class="form-text text-danger"  *ngIf ="Joining_Date.errors?.required">Field is required</small>
+                           </div> -->
+                        <span class="slider round"></span>
+                      </label>
+                      <span [class.text-gray]="togglerForEvent"> Multi Day Event</span>
+                    </div>
+                    <div class="form-control-wrap">
+                      <div class="input-group transition" *ngIf="togglerForEvent">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                          #d="ngbDatepicker"
+                          />
+                        
+                        <button class="btn btn-outline-gray icon ni ni-calendar-booking" (click)="d.toggle()"
+                          type="button"></button>
+                      </div>
+                     
+                    </div>
+                    <!-- multi day event -->
+                    <div class="input-daterange date-picker-range input-group inp-group transition"
+                      *ngIf="!togglerForEvent">
+                      <div class="inp">
+                        <div class="dp-hidden position-absolute">
+                          <div class="input-group">
+                            <input name="datepicker" class="form-control " ngbDatepicker #datepicker="ngbDatepicker"
+                              [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="1"
+                              [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!" tabindex="-1"
+                              (click)="datepicker.toggle()"
+                              />
+                            <ng-template #t let-date let-focused="focused">
+                              <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                                [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null">
+                                {{ date.day }}
+                              </span>
+                            </ng-template>
+                            
+                          </div>
+                        </div>
+                        <div class="input-group">
+                          <input #dpFromDate class="form-control" placeholder="yyyy-mm-dd" name="dpFromDate"
+                            [value]="formatter.format(fromDate)"
+                            (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+                            (click)="datepicker.toggle()"
+                            formControlName ="JoiningDate" 
+                            [ngClass]="{
+                             'form-control': true,
+                             'is-invalid': !JoiningDate.valid && JoiningDate.touched,
+                             'is-valid': JoiningDate.valid
+                           }"/>
+                        
+                        </div>
+                        <div *ngIf="JoiningDate.touched">
+                          <small class="form-text text-danger"  *ngIf ="JoiningDate.errors?.required">Field is required</small>
+                         </div>
+                      </div>
+                      <div class="input-group-addon divider-to">TO</div>
+                      <div class="inp">
+                        <div class="input-group ">
+                          <input #dpToDate class="form-control" placeholder="yyyy-mm-dd" name="dpToDate"
+                            [value]="formatter.format(toDate)" (input)="toDate = validateInput(toDate, dpToDate.value)"
+                            (click)="datepicker.toggle()"
+                            
+                            formControlName ="Joining_Date" 
+                            [ngClass]="{
+                             'form-control': true,
+                             'is-invalid': !Joining_Date.valid && Joining_Date.touched,
+                             'is-valid': Joining_Date.valid
+                           }"/>
+                           
+                        </div>
+                        <div *ngIf="Joining_Date.touched">
+                          <small class="form-text text-danger"  *ngIf ="Joining_Date.errors?.required">Field is required</small>
+                         </div>
+                        
+                      </div>
+                    </div>
+                    <!-- end -->
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label">Event Timing</label>
+                    <div class="form-control-wrap">
+                      <div class="inp-group d-flex">
+                        <div ngbDropdown class="inp ">
+                          <button type="button" class="btn w-100 text-center btn-outline-gray" id="dropdownBasic1"
+                            ngbDropdownToggle>
+                            {{startTime}}
+                          </button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+                            style="height: 150px; overflow-y:scroll;">
+                            <button ngbDropdownItem *ngFor="let time of time" (click)="startTime=time">{{time}}</button>
+                          </div>
+                        </div>
+                        <div class="input-group-addon divider-to">TO</div>
+                        <div ngbDropdown class="inp">
+                          <div type="button" class="btn w-100 text-center btn-outline-gray" id="dropdownBasic1"
+                            ngbDropdownToggle>
+                            {{endTime}}
+                          </div>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+                            style="height: 150px; overflow-y:scroll;">
+                            <button ngbDropdownItem *ngFor="let time of time" (click)="endTime=time">{{time}}</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-6 col-lg-4 col-xxl-3">
+                  <div class="form-group">
+                    <label class="form-label" for="total-person">Total Persons</label>
+                    <input type="number" class="form-control" id="total-person" placeholder="Total Person"
+                    formControlName="persons"
+                    [ngClass]="{
+                    'form-control':true,
+                    'is-invalid': !persons.valid && persons.touched,
+                    'is-valid': persons.valid                      
+                    }"/>
+                    <div *ngIf="persons.touched">
+                      <small class="form-text text-danger" *ngIf="persons.errors?.required">Feild is Required</small>
+                      <small class="form-text text-danger" *ngIf="persons.errors?.minlength">Minimum 3 letters</small>
+                    </div>
+                  </div>
+                </div>
+                <!--col-->
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-label" for="default-textarea">Note</label>
+                    <div class="form-control-wrap">
+                      <textarea class="form-control no-resize" id="default-textarea"
+                        placeholder="Add Some Note"
+                        formControlName="note"
+                        [ngClass]="{
+                        'form-control':true,
+                        'is-invalid': !note.valid && note.touched,
+                        'is-valid': note.valid                      
+                        }"
+                        ></textarea>
+                        <div *ngIf="persons.touched">
+                          <small class="form-text text-danger" *ngIf="note.errors?.required">Feild is Required</small>
+                          <small class="form-text text-danger" *ngIf="note.errors?.minlength">Minimum 3 letters</small>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <button (click)="addSuccessfully()" type="submit" class="btn btn-primary">
+                      Add Booking
+                    </button>
+                  </div>
+                </div>
+                <!--col-->
+              </div>
+              <!--row-->
+            </form>
+            </div>
+            <!-- .card-inner-group -->
+          </div>
+          <!-- .card -->
+        </div>
+        <!-- .nk-block -->
+      </div>
+    </div>
+  </div>
+</div>
